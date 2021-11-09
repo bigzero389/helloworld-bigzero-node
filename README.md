@@ -1,4 +1,5 @@
-* docker built -t dy-helloworld .
+* sudo systemctl start docker
+* docker build -t dy-helloworld .
 * docker run -p 3000:3000 -d dy-helloworld
 * curl localhost:3000 // result : DYHEO helloworld
 * docker logs [containerid]
