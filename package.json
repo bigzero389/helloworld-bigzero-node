@@ -8,13 +8,10 @@
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha",
-    "start": "node dy-helloworld.js &"
+    "start": "node dy-helloworld.js& \n"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/largezero/HelloWorldNode.git"
-  },
-  "author": "",
+  "repository": "https://github.com/largezero/HelloWorldNode.git",
+  "author": "bigzero <dyheo@hist.co.kr>",
   "license": "BSD",
   "bugs": {
     "url": "https://github.com/largezero/HelloWorldNode/issues"
@@ -24,6 +21,8 @@
     "zombie": "~6.1.4"
   },
   "dependencies": {
-    "winston": "^3.3.3"
+    "express": "^4.17.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
   }
 }
