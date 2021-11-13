@@ -3,6 +3,7 @@
 * docker run -p 3000:3000 -d hello-bigzero-world 
 * curl localhost:3000 // result : Hello bigzero world!!!
 * docker logs [containerid]
-* docker ps
+* docker ps -a
 * docker stop [containerid]
-* docker rmi [imageid] -f
+* docker rm [container id] -f
+* docker rmi [image id] -f
