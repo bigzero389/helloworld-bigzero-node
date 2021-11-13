@@ -1,7 +1,7 @@
-FROM node:carbon
-RUN mkdir -p /usr/local/dy-helloworld/
-COPY dy-helloworld.js package.json /usr/local/dy-helloworld/
-WORKDIR /usr/local/dy-helloworld/
+FROM node:slim
+RUN mkdir -p /usr/local/HelloBigzeroWorld/
+COPY hello-bigzero-world.js package.json /usr/local/HelloBigzeroWorld/
+WORKDIR /usr/local/HelloBigzeroWorld/
 RUN npm install --production
 EXPOSE 3000
-ENTRYPOINT ["node", "dy-helloworld" ]
+ENTRYPOINT ["node", "hello-bigzero-world" ]

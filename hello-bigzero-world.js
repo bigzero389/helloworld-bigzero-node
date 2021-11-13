@@ -39,11 +39,6 @@ var logger = winston.createLogger({
     exitOnError: false,
 });
 
-//logger.rewriters.push(function(level, msg, meta) {
-//  meta.version = version
-//  return meta
-//})
-
 http.createServer(function (request, response) {
    // Send the HTTP header
    // HTTP Status: 200 : OK
@@ -51,7 +46,7 @@ http.createServer(function (request, response) {
    response.writeHead(200, {'Content-Type': 'text/plain'})
 
    // Send the response body as "Hello World"
-   response.end('DYHEO Hello World\n')
+   response.end('Hello bigzero world !!! \n')
 }).listen(3000)
 
 // Console will print the message

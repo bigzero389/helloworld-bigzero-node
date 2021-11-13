@@ -1,8 +1,8 @@
 {
-  "name": "dy-helloworld",
+  "name": "hello-bigzero-world",
   "version": "1.0.0",
   "description": "",
-  "main": "dy-helloworld.js",
+  "main": "hello-bigzero-world.js",
   "directories": {
     "test": "test"
   },
@@ -10,11 +10,11 @@
     "test": "node_modules/mocha/bin/mocha",
     "start": "node dy-helloworld.js& \n"
   },
-  "repository": "https://github.com/largezero/HelloWorldNode.git",
+  "repository": "https://github.com/largezero/HelloBigzeroWorldNode.git",
   "author": "bigzero <dyheo@hist.co.kr>",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/largezero/HelloWorldNode/issues"
+    "url": "https://github.com/largezero/HelloBigzeroWorldNode/issues"
   },
   "devDependencies": {
     "mocha": "~9.1.3",
