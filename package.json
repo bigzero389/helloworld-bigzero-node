@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha",
-    "start": "node dy-helloworld.js& \n"
+    "start": "node hello-bigzero-world.js & \n"
   },
   "repository": "https://github.com/largezero/HelloBigzeroWorldNode.git",
   "author": "bigzero <dyheo@hist.co.kr>",
