@@ -37,19 +37,19 @@ const OPTIONS = {
         colorize: true,
     },
     cloudwatch: {
+        name: 'dy-helloworld-cloudwatch-log',
         level: 'info',
-        handleExceptions: true,
-        json: false,
-        colorize: true,
         logGroupName: '/aws/ecs/dy-helloworld',
         logStreamName: 'dy-helloworld',
+        createLogGroup: true,
+        createLogStream: true,
     }
 };
 
 const LOGGER = WINSTON.createLogger({
   transports: [
       new (WINSTON.transports.Console)(OPTIONS.console),
-      new (WINSTON.transports.Console)(OPTIONS.cloudwatch),
+      new WINSTON_CLOUDWATCH(OPTIONS.cloudwatch),
       new WINSTON_DAILY(OPTIONS.file),
       new WINSTON_DAILY(OPTIONS.errorFile),
   ],
