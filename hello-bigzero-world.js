@@ -46,15 +46,17 @@ const OPTIONS = {
     }
 };
 
-const LOGGER = WINSTON.createLogger({
-  transports: [
-      new (WINSTON.transports.Console)(OPTIONS.console),
-      new WINSTON_CLOUDWATCH(OPTIONS.cloudwatch),
-      new WINSTON_DAILY(OPTIONS.file),
-      new WINSTON_DAILY(OPTIONS.errorFile),
-  ],
+if(process.env.NODE_ENV != 'develop') {
+  const LOGGER = WINSTON.createLogger({
+    transports: [
+        new (WINSTON.transports.Console)(OPTIONS.console),
+        new WINSTON_CLOUDWATCH(OPTIONS.cloudwatch),
+        new WINSTON_DAILY(OPTIONS.file),
+        new WINSTON_DAILY(OPTIONS.errorFile),
+    ],
     exitOnError: false,
-});
+  });
+}
 
 AWS.config.update({region:"ap-northeast-2"})
 const CW_EVENTS = new AWS.CloudWatchEvents({apiVersion: "2015-10-07"})
