@@ -1,4 +1,5 @@
-FROM node:slim
+#FROM node:slim
+FROM 160270626841.dkr.ecr.ap-northeast-2.amazonaws.com/bigzero-node-base:latest
 RUN mkdir -p /usr/local/HelloBigzeroWorld/
 COPY hello-bigzero-world.js package.json /usr/local/HelloBigzeroWorld/
 WORKDIR /usr/local/HelloBigzeroWorld/
