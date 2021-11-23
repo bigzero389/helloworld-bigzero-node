@@ -1,7 +1,7 @@
 const HTTP = require("http")
 const WINSTON = require("winston")
 const WINSTON_DAILY = require("winston-daily-rotate-file")
-const VERSION = process.env.HELLOWORLD_VERSION
+const HELLOWORLD_VERSION = process.env.HELLOWORLD_VERSION
 const AWS = require("aws-sdk")
 
 
@@ -67,7 +67,7 @@ HTTP.createServer(function (request, response) {
             MetricName: "page_viewed",
             Dimensions: [{
                 Name: "Version",
-                Value: VERSION
+                Value: HELLOWORLD_VERSION
             }],
             Unit: "None",
             Value: 1.0
@@ -76,13 +76,13 @@ HTTP.createServer(function (request, response) {
     }
 
     let isoDate = new Date().toISOString()
-    LOGGER.info("Hello bigzero world version "+ VERSION +" is called at " + isoDate);
+    LOGGER.info("Hello bigzero world version "+ HELLOWORLD_VERSION +" is called at " + isoDate);
    // Send the HTTP header
    // HTTP Status: 200 : OK
    // Content Type: text/plain
    response.writeHead(200, {'Content-Type': 'text/plain'})
    // Send the response body as "Hello World"
-   response.end('Hello bigzero world !!! '+ isoDate +' \n')
+   response.end('Hello bigzero world !!!, HELLOWORLD_VERSION:'+ HELLOWORLD_VERSION + ", DATE:" + isoDate +' \n')
     CW_EVENTS.putEvents(event, function(err, data){
         if (err) {
             LOGGER.error("error", "an error occurred when (createing an event", {error: err})
@@ -101,4 +101,4 @@ HTTP.createServer(function (request, response) {
 
 // Console will print the message
 //console.log('Server running')
-LOGGER.info("Server is Running ==> port:3000, version:" + VERSION)
+LOGGER.info("Server is Running ==> port:3000, version:" + HELLOWORLD_VERSION)
