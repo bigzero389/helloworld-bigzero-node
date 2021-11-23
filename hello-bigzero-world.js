@@ -1,10 +1,10 @@
 const HTTP = require("http")
 const WINSTON = require("winston")
 const WINSTON_DAILY = require("winston-daily-rotate-file")
-const HELLOWORLD_VERSION = process.env.HELLOWORLD_VERSION
 const AWS = require("aws-sdk")
+const WINSTON_CLOUDWATCH = require('winston-cloudwatch')
 
-
+const HELLOWORLD_VERSION = process.env.HELLOWORLD_VERSION
 const OPTIONS = {
     file: {
         level: 'info',
@@ -36,14 +36,21 @@ const OPTIONS = {
         json: false,
         colorize: true,
     },
+    cloudwatch: {
+        level: 'info',
+        handleExceptions: true,
+        json: false,
+        colorize: true,
+        logGroupName: '/aws/ecs/dy-helloworld',
+        logStreamName: 'dy-helloworld',
+    }
 };
 
 const LOGGER = WINSTON.createLogger({
   transports: [
       new (WINSTON.transports.Console)(OPTIONS.console),
-      //new (winston.transports.File)(options.errorFile),
+      new (WINSTON.transports.Console)(OPTIONS.cloudwatch),
       new WINSTON_DAILY(OPTIONS.file),
-      //new (WINSTON.transports.File)(OPTIONS.file)
       new WINSTON_DAILY(OPTIONS.errorFile),
   ],
     exitOnError: false,
