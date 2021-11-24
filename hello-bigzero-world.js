@@ -46,7 +46,6 @@ const OPTIONS = {
     }
 };
 
-if(process.env.NODE_ENV != 'develop') {
   const LOGGER = WINSTON.createLogger({
     transports: [
         new (WINSTON.transports.Console)(OPTIONS.console),
@@ -56,7 +55,6 @@ if(process.env.NODE_ENV != 'develop') {
     ],
     exitOnError: false,
   });
-}
 
 AWS.config.update({region:"ap-northeast-2"})
 const CW_EVENTS = new AWS.CloudWatchEvents({apiVersion: "2015-10-07"})
