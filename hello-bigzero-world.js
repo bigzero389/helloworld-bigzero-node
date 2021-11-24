@@ -2,6 +2,7 @@ const HTTP = require("http")
 const WINSTON = require("winston")
 const WINSTON_DAILY = require("winston-daily-rotate-file")
 const AWS = require("aws-sdk")
+AWS.config.update({region:"ap-northeast-2"})
 const WINSTON_CLOUDWATCH = require('winston-cloudwatch')
 
 const HELLOWORLD_VERSION = process.env.HELLOWORLD_VERSION
@@ -56,7 +57,6 @@ const OPTIONS = {
     exitOnError: false,
   });
 
-AWS.config.update({region:"ap-northeast-2"})
 const CW_EVENTS = new AWS.CloudWatchEvents({apiVersion: "2015-10-07"})
 const CW = new AWS.CloudWatch({apiVersion:"2010-08-01"})
 
@@ -64,8 +64,8 @@ HTTP.createServer(function (request, response) {
     let event = {
        Entries: [{
            Detail: JSON.stringify(request.headers),
-           DetailType: "dy-helloworld application access request",
-           Source: "dy-helloworld.app"
+           DetailType: "hello-bigzero-world application access request",
+           Source: "hello-bigzero-world.app"
        }]
     }
 
@@ -84,12 +84,13 @@ HTTP.createServer(function (request, response) {
 
     let isoDate = new Date().toISOString()
     LOGGER.info("Hello bigzero world version "+ HELLOWORLD_VERSION +" is called at " + isoDate);
-   // Send the HTTP header
-   // HTTP Status: 200 : OK
-   // Content Type: text/plain
-   response.writeHead(200, {'Content-Type': 'text/plain'})
-   // Send the response body as "Hello World"
-   response.end('Hello bigzero world !!!, HELLOWORLD_VERSION:'+ HELLOWORLD_VERSION + ", DATE:" + isoDate +' \n')
+    // Send the HTTP header
+    // HTTP Status: 200 : OK
+    // Content Type: text/plain
+    response.writeHead(200, {'Content-Type': 'text/plain'})
+    // Send the response body as "Hello World"
+    response.end('Hello bigzero world !!!, HELLOWORLD_VERSION:'+ HELLOWORLD_VERSION + ", DATE:" + isoDate +' \n')
+
     CW_EVENTS.putEvents(event, function(err, data){
         if (err) {
             LOGGER.error("error", "an error occurred when (createing an event", {error: err})
